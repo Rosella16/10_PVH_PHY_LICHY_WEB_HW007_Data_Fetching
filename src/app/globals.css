@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* .container {
+  display: flex;
+  flex-gap: 10px;
+  overflow-y-hidden;
+  whitespace-no-wrap;
+  scrolling-touch;
+  overflow-x-auto;
+  scroll-none; 
+} */
+
+.background-div {
+  background-image: url('../../public/images/page.webp');
+  background-size: cover;
+  background-position: center; 
+  min-height: 100vh; 
+}
+
+.description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis; 
+}
+
+.card-container {
+  height: 320px; 
+  width: 340px;
+  margin-bottom: 11px;
+  
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
