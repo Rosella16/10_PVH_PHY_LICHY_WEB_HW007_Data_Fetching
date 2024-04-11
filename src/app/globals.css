@@ -10,18 +10,18 @@
 
 
 .background-div {
-  background-image: url('../../public/images/page.webp');
+  background-image: url("../../public/images/page.webp");
   background-size: cover;
-  background-position: center; 
-  min-height: 100vh; 
+  background-position: center;
+  min-height: 100vh;
 }
 
 .description {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
 }
 .title{
   overflow: hidden;
@@ -47,6 +47,12 @@
   }
 }
 
+.movie-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -61,4 +67,16 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.scrolling-touch {
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  white-space: nowrap; 
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+ }
+ 
+ .scrolling-touch::-webkit-scrollbar {
+  display: none
 }

@@ -1,7 +1,5 @@
-import Image from "next/image";
 import HomepageComponent from "./_components/HomepageComponent";
 import MovieComponent from "./_components/MovieComponent";
-import Link from "next/link";
 import { getAllMoviesService } from "@/services/movie.service";
 import { getMovieByGenreService } from "@/services/movie.service";
 
@@ -12,6 +10,7 @@ export default async function Home() {
     (value, index, array) => array.indexOf(value) === index
   );
   console.log(uniqueGenres);
+
   return (
     <main>
       <div className="background-div">
@@ -21,7 +20,7 @@ export default async function Home() {
         <div className="">
           <h2 className="font-semibold text-white ml-10 ">All Movies &gt;</h2>
         </div>
-        <div className="flex overflow-y-hidden whitespace-no-wrap scrolling-touch overflow-x-auto scroll-none container ">
+        <div className="flex overflow-x-auto scrolling-touch container">
           {allMoviesData.payload.map((movie) => (
             <MovieComponent key={movie.movie_id} movie={movie} />
           ))}
@@ -36,7 +35,7 @@ export default async function Home() {
                   {genre} Movies &gt;
                 </h2>
               </div>
-              <div className="flex overflow-y-hidden whitespace-no-wrap scrolling-touch overflow-x-auto scroll-none container ">
+              <div className="flex scrolling-touch overflow-x-auto">
                 {movies.payload.map((movie) => (
                   <MovieComponent key={movie.movie_id} movie={movie} />
                 ))}
