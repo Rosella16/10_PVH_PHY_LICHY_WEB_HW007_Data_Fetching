@@ -1,7 +1,7 @@
-'use client'
-import React,{useState, useEffect} from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import HomepageComponent from "./HomepageComponent";
-import { getAllMoviesService, getMovieByIdService } from "@/services/movie.service";
+import { getMovieByIdService } from "@/services/movie.service";
 
 const MovieDetailsComponent = ({ movieId, data }) => {
   console.log("movie details : ", data);
@@ -19,6 +19,30 @@ const MovieDetailsComponent = ({ movieId, data }) => {
 
     fetchMovieData();
   }, [movieId]);
+
+    const renderStars = (rating) => {
+    const stars = [];
+    const roundedRating = Math.round(rating); 
+    for (let i = 1; i <= 5; i++) {
+      if (i <= roundedRating) {
+        stars.push(
+          <span key={i} className="text-yellow-400">
+            &#9733;
+          </span>
+        );
+      } else {
+        stars.push(
+          <span key={i} className="text-gray-400">
+            &#9733;
+          </span>
+        );
+      }
+    }
+    return stars;
+  };
+
+  const staticImageURL = "https://vuclipi-a.akamaihd.net/p/tthumb1600x900/d-1/1166006834.jpg";
+
   return (
     <>
       <div class=" bg-amber-950 h-screen ">
@@ -27,12 +51,20 @@ const MovieDetailsComponent = ({ movieId, data }) => {
         <div class="px-[6rem] py-5">
           <div class="flex flex-col md:flex-row -mx-4">
             <div class="md:flex-1 px-6">
-              <div class="w-[47rem] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
-                <img
-                  class="w-full h-full object-cover"
-                  src={data.image}
-                  alt="Product Image"
-                />
+              <div class="w-[47rem] h-[27rem] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
+                {data && data.image ? (
+                  <img
+                    src={data.image}
+                    alt={data.movie_title}
+                    className="rounded-sm h-[27rem]"
+                  />
+                ) : (
+                  <img
+                    src={staticImageURL}
+                    alt="Placeholder"
+                    className="rounded-sm h-[27rem]"
+                  />
+                )}
               </div>
             </div>
             <div class="md:flex-1 px-4">
@@ -60,39 +92,13 @@ const MovieDetailsComponent = ({ movieId, data }) => {
                 </div>
               </div>
 
-              {/* star rating */}
-              <div className="rating rating-sm">
-                <input
-                  type="radio"
-                  name="rating-6"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-6"
-                  className="mask mask-star-2 bg-orange-400"
-                  checked
-                />
-                <input
-                  type="radio"
-                  name="rating-6"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-6"
-                  className="mask mask-star-2 bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-6"
-                  className="mask mask-star-2 bg-orange-400"
-                />
+              <div className="flex mb-4">
+                {renderStars(data.rating)} {/* Call renderStars function */}
               </div>
 
               <div>
                 <span class="font-bold text-white dark:text-gray-300">
-                  {data.movie.title} &nbsp;
+                  {data.movie_title} &nbsp;
                 </span>
                 <span class="font-bold text-white dark:text-gray-300">
                   (&nbsp;2021&nbsp;)
